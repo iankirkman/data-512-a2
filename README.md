@@ -10,9 +10,9 @@ The goal of this assignment is to explore the ramifications of bias in data. Giv
  - The content of this project directory is released under the [MIT license](LICENSE.md).
 
 ## Data Sources
-The [Population Reference Bureau (PRB)](http://www.prb.org/DataFinder/Topic/Rankings.aspx?ind=14) website contains a dataset with population counts by country circa mid-2015. A CSV file can be downloaded directly from the link by clicking the Excel icon in the top right side of the page. The CSV file must then be uploaded to the project data directory at the path specified in the inputs section of the project [jupyter notebook](hcds-a12-bias.ipynb). The only fields we use from this data are `Location` and `Data`, which correspond to 'Country' and 'Population' on our final dataset, respectively.
+The [Population Reference Bureau (PRB)](http://www.prb.org/DataFinder/Topic/Rankings.aspx?ind=14) website contains a dataset with population counts by country circa mid-2015. A CSV file can be downloaded directly from the link by clicking the Excel icon in the top right side of the page. The CSV file must then be uploaded to the project data directory at the path specified in the inputs section of the project [jupyter notebook](hcds-a2-bias.ipynb). The only fields we use from this data are `Location` and `Data`, which correspond to 'Country' and 'Population' on our final dataset, respectively.
 
-The english Wikipedia page data for political figures by country was provided by Oliver Keyes on [Figshare](https://figshare.com/articles/Untitled_Item/5513449). The CSV file can be downloaded via the download button on the top left, and then uploaded to the project data directory at the path specified in the inputs section of the project [jupyter notebook](hcds-a12-bias.ipynb). Keyes's code and data notes at available at the link. We will use each field from this dataset, with the following mapping to our final output: 'country' to 'Country', 'page' to 'Article_Name', and 'rev_id' to 'Revision_ID'.
+The english Wikipedia page data for political figures by country was provided by Oliver Keyes on [Figshare](https://figshare.com/articles/Untitled_Item/5513449). The CSV file can be downloaded via the download button on the top left, and then uploaded to the project data directory at the path specified in the inputs section of the project [jupyter notebook](hcds-a2-bias.ipynb). Keyes's code and data notes at available at the link. We will use each field from this dataset, with the following mapping to our final output: 'country' to 'Country', 'page' to 'Article_Name', and 'rev_id' to 'Revision_ID'.
 
 For the article quality score predicitons, we will be accessing the [Objective Revision Evaluation Service (ORES) API](https://www.mediawiki.org/wiki/ORES) to collect predictions by article (matched on Revision ID). We use the endpoint and parameters specified in Section 1.1 of the notebook to call the API with multiple Revision IDs smushed together with a vertical line delimiter. The user-input parameters in the notebook specify the project ('enwiki') and model ('wp10') for the API call. Version 3 is assumed and hard-coded into all API calls. Revision IDs are added to the parameters in chunks of 50 after some initial processing steps from the Figshare data.
 
@@ -38,7 +38,7 @@ Raw ORES data from the API calls is saved in the [DATA](DATA/) folder.
 
 
 ## Processing Steps
-See the project [jupyter notebook](hcds-a12-bias.ipynb) for detailed processing steps.
+See the project [jupyter notebook](hcds-a2-bias.ipynb) for detailed processing steps.
 
 ## Output
 The raw data is processed into a single [csv table](OUTPUT/processed_wp_prb_ores_data.csv) with the following fields:
@@ -55,7 +55,7 @@ The final combined dataset exported to CSV has headers that correspond to each s
 
 To analyze the bias in english Wikipedia articles, we compute two metrics for each country in the combined data. To assess coverage of articles in a country, we compute an articles-per-population proportion (reported as a percentage). To assess the quality of articles in a given country, we compute the proportion of articles that are high quality (those that are classified as 'FA' or 'GA', also reported as a percentage).
 
-We can use these two metrics to obtain the following country-ranking visualization tables, embedded in the project [jupyter notebook](hcds-a12-bias.ipynb):
+We can use these two metrics to obtain the following country-ranking visualization tables, embedded in the project [jupyter notebook](hcds-a2-bias.ipynb):
 Top Ten Countries by Coverage Proportion (Articles-to-Population)
 Bottom Ten Countries by Coverage Proportion (Articles-to-Population)
 Top Ten Countries by Proportion of High Quality Articles
